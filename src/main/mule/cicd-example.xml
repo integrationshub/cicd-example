@@ -9,6 +9,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	</http:listener-config>
 	<flow name="cicd-exampleFlow" doc:id="885558d7-9cfb-45c1-a631-65c044508e66" >
 		<http:listener doc:name="Listener" doc:id="ce61bd29-d053-498b-bf26-4ae4b1e3c660" config-ref="HTTP_Listener_config" path="cicd"/>
-		<set-payload value="#['************** this is an example of CI/CD process *************']" doc:name="Set Payload" doc:id="58878966-2328-47ec-911f-14ac6efb7568" />
+		<set-payload value="#['************** This is an example of CI/CD process *************']" doc:name="Set Payload" doc:id="58878966-2328-47ec-911f-14ac6efb7568" />
 	</flow>
 </mule>
