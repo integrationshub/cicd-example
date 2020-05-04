@@ -20,7 +20,7 @@
 		<cloundhub.env>Sandbox</cloundhub.env>
 		<cloudhub.workers>1</cloudhub.workers>
 		<cloudhub.workerType>Micro</cloudhub.workerType>
-		
+		<application.name>${artifactId}-${version}</application.name>
 		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
 	</properties>
 
@@ -34,16 +34,17 @@
 				<configuration>
 				<classifier>mule-application</classifier>
 				<cloudHubDeployment>
-		            <muleVersion>${app.runtime}</muleVersion> 
+		            <muleVersion>4.2.2</muleVersion> 
 		            <username>${anypoint.username}</username> 
 		            <password>${anypoint.password}</password> 
-		            <applicationName>${artifactId}-${version}</applicationName> 
+		            <applicationName>cicd-example</applicationName> 
 		            <environment>${cloundhub.env}</environment> 
 		            <!-- <businessGroup>${anypoint.businessGroup}</businessGroup>
 		            <region>${cloudhub.region}</region>
 		            <uri>${anypoint.uri}</uri>  -->
 		            <workerType>${cloudhub.workerType}</workerType> 
 		            <workers>${cloudhub.workers}</workers>
+		            <objectStoreV2>true</objectStoreV2>
 		          </cloudHubDeployment>
                 </configuration>
 			</plugin>
