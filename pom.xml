@@ -14,6 +14,13 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<app.runtime>4.2.2-hf1</app.runtime>
+		
+		<anypoint.username>iamkiran_hub</anypoint.username>
+		<anypoint.password>Anvitha10!</anypoint.password>
+		<cloundhub.env>Sandbox</cloundhub.env>
+		<cloudhub.workers>1</cloudhub.workers>
+		<cloudhub.workerType>Micro</cloudhub.workerType>
+		
 		<mule.maven.plugin.version>3.3.5</mule.maven.plugin.version>
 	</properties>
 
@@ -26,6 +33,18 @@
 				<extensions>true</extensions>
 				<configuration>
 				<classifier>mule-application</classifier>
+				<cloudHubDeployment>
+		            <muleVersion>${app.runtime}</muleVersion> 
+		            <username>${anypoint.username}</username> 
+		            <password>${anypoint.password}</password> 
+		            <applicationName>${artifactId}-${version}</applicationName> 
+		            <environment>${cloundhub.env}</environment> 
+		            <!-- <businessGroup>${anypoint.businessGroup}</businessGroup>
+		            <region>${cloudhub.region}</region>
+		            <uri>${anypoint.uri}</uri>  -->
+		            <workerType>${cloudhub.workerType}</workerType> 
+		            <workers>${cloudhub.workers}</workers>
+		          </cloudHubDeployment>
                 </configuration>
 			</plugin>
 		</plugins>
@@ -73,3 +92,4 @@
     </pluginRepositories>
 
 </project>
+
