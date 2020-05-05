@@ -119,17 +119,16 @@ pipeline
         }
         success {
             echo 'This will run only if successful'
-            mail to: config.emailRecipients,
-             subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
-             body: "Congratulations!!"
              
-             //email recipients:config.emailRecipients
         }
         failure {
             echo 'This will run only if failed'
             mail to: config.emailRecipients,
              subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
              body: "Something is wrong with ${env.BUILD_URL}"
+             
+             
+            //email recipients:config.emailRecipients
              
         }
         unstable {
