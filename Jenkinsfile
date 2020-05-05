@@ -1,28 +1,12 @@
 pipeline
 {
-	agent any
+	agent { docker { image 'my_local_maven' } }
 	
-	tools {
-        maven 'my_local_maven' 
-    }
-    
 	stages {
-	
-		stage('Build Application') {
-			steps{
-				script {
-                        sh 'mvn -U clean install'
-				}	
-			}
-		}
-		
-		stage('Deploy Application to CloudHub') {
-			steps{
-				script {
-					sh 'mvn package deploy -DmuleDeploy'
-				}
-			}
-		}	
-		
-	}
+        stage('build') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+    }
 }
