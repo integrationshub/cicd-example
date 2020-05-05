@@ -24,9 +24,19 @@ pipeline
 	
 		stage('Build Application') {
 			steps{
+			
 				echo "Database engine is ${DB_ENGINE}"
+			
+				echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+			
 				script {
+				
+					//prints all environment variables
 					sh 'printenv'
+					
+					//print only specific environment variables
+					sh 'echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"'
+					
 					sh 'echo "Hello World"'
 	                sh '''
 	                    echo "Multiline shell steps works too"
