@@ -8,41 +8,79 @@ pipeline
 		}
 	}
 	
+	//multi line comment
+	/*agent { 
+		docker 
+			{ 
+				image 'maven:3.3.3' 
+			}
+	}*/
 	
-	//agent { docker { image 'maven:3.3.3' } }
+	//define tools
 	
 	tools {
-        maven 'my_local_maven' 
+        maven 'my_local_maven'  //my_local_maven is the same name used while configuring on Jenkins
     }
     
+    //setting global environment variables - acccessible to all stages
+    
     environment {
+    
         DISABLE_AUTH = 'true'
+        
         DB_ENGINE    = 'sqlite'
+        
+        // Using returnStdout
+        CC = """${sh(
+                returnStdout: true,
+                script: 'echo "clang"'
+            )}""" 
+            
+            
+        // Using returnStatus
+        EXIT_STATUS = """${sh(
+                returnStatus: true,
+                script: 'exit 1'
+            )}"""
+            
     }
     
 	stages {
 	
 		stage('Build Application') {
+		
+			//setting local environment variables - acccessible only in this stage
+		
+			environment { 
+                DEBUG_FLAGS = '-g'
+            }
+		
 			steps{
 			
-				echo "Database engine is ${DB_ENGINE}"
+				//echo "Database engine is ${DB_ENGINE}"
 			
-				echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+				//echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
 			
 				script {
+				
+					//sh 'echo "Hello World"'
+					
+	                /*sh '''
+	                    echo "Multiline shell steps works too"
+	                    ls -lah
+	                '''
+	                */
 				
 					//prints all environment variables
 					sh 'printenv'
 					
 					//print only specific environment variables
-					sh 'echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"'
+					//sh 'echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"'
 					
-					sh 'echo "Hello World"'
-	                sh '''
-	                    echo "Multiline shell steps works too"
-	                    ls -lah
-	                '''
+					
+					
 					sh 'mvn --version'
+                    
                     //sh 'mvn -U clean install'
 				}	
 			}
@@ -56,7 +94,11 @@ pipeline
 			}
 		}	*/
 		
+		
+		
 	}
+	
+	
 	
 	post {
         always {
