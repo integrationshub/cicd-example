@@ -75,7 +75,7 @@ pipeline
 					sh 'printenv'
 					
 					//print only specific environment variables
-					//sh 'echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"'
+					echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
 					
 					
 					
