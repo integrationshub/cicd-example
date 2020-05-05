@@ -1,3 +1,8 @@
+def config = [emailRecipients: 'kiran.vemula@sierra-cedar.com',
+			anypointHost: 'anypoint.mulesoft.com',
+			anypointEnv: 'dev',
+			mavenImage: 'my_local_maven']
+
 pipeline
 {
 	//agent directive tells Jenkins where and how to execute the Pipeline
@@ -110,12 +115,22 @@ pipeline
 	post {
         always {
             echo 'This will always run'
+            
         }
         success {
             echo 'This will run only if successful'
+            mail to: config.emailRecipients,
+             subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Congratulations!!"
+             
+             //email recipients:config.emailRecipients
         }
         failure {
             echo 'This will run only if failed'
+            mail to: config.emailRecipients,
+             subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+             body: "Something is wrong with ${env.BUILD_URL}"
+             
         }
         unstable {
             echo 'This will run only if the run was marked as unstable'
