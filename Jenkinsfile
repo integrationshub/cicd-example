@@ -43,6 +43,11 @@ pipeline
                 script: 'exit 1'
             )}"""
             
+            
+        //access credentials from Jenkins
+        GITHUB_CREDS     = credentials('80571d5d-c411-4efe-bd63-66b008b72d4e')
+        
+            
     }
     
 	stages {
@@ -56,6 +61,8 @@ pipeline
             }
 		
 			steps{
+				
+				echo "${GITHUB_CREDS}"
 			
 				//echo "Database engine is ${DB_ENGINE}"
 			
