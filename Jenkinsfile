@@ -1,24 +1,38 @@
 pipeline
 {
-	agent any
+	//agent directive tells Jenkins where and how to execute the Pipeline
+	
+	agent {
+		any
+		label 'my_label'
+	}
+	
+	
 	//agent { docker { image 'maven:3.3.3' } }
 	
 	tools {
         maven 'my_local_maven' 
     }
     
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
+    }
+    
 	stages {
 	
 		stage('Build Application') {
 			steps{
+				echo "Database engine is ${DB_ENGINE}"
 				script {
+					sh 'printenv'
 					sh 'echo "Hello World"'
 	                sh '''
 	                    echo "Multiline shell steps works too"
 	                    ls -lah
 	                '''
 					sh 'mvn --version'
-                    sh 'mvn -U clean install'
+                    //sh 'mvn -U clean install'
 				}	
 			}
 		}
