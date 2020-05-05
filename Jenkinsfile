@@ -24,7 +24,7 @@ pipeline
 	//define tools
 	
 	tools {
-        maven 'my_local_maven'  //my_local_maven is the same name used while configuring on Jenkins
+        maven config.mavenImage  //my_local_maven is the same name used while configuring on Jenkins
     }
     
     //setting global environment variables - acccessible to all stages
@@ -93,7 +93,7 @@ pipeline
 					
 					sh 'mvn --version'
                     
-                    //sh 'mvn -U clean install'
+                    sh 'mvn -U clean install'
 				}	
 			}
 		}
