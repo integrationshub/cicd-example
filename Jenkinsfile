@@ -3,8 +3,9 @@ pipeline
 	//agent directive tells Jenkins where and how to execute the Pipeline
 	
 	agent {
-		any
-		label 'my_label'
+		any {
+			label 'my_label'
+		}
 	}
 	
 	
