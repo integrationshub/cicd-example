@@ -151,6 +151,17 @@ pipeline
 				//echo "Database engine is ${DB_ENGINE}"
 			
 				//echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+				
+				//script step takes a block of Scripted Pipeline and executes that in the Declarative Pipeline.
+				
+				script {
+                    def browsers = ['chrome', 'firefox']
+                    for (int i = 0; i < browsers.size(); ++i) {
+                        echo "Testing the ${browsers[i]} browser"
+                    }
+                }
+                
+                
 			
 				script {
 				
@@ -177,6 +188,7 @@ pipeline
 			}
 		}
 		
+		/*
 		stage('Deploy Application to CloudHub') {
 			steps{
 				script {
@@ -184,7 +196,7 @@ pipeline
 				}
 			}
 		}	
-		
+		*/
 		
 		//stage level agent section
 		/*
