@@ -52,6 +52,8 @@ pipeline
 	
 	
 	//define tools
+	//The tool name must be pre-configured in Jenkins under Manage Jenkins → Global Tool Configuration.
+	
 	
 	tools {
         maven config.mavenImage  //my_local_maven is the same name used while configuring on Jenkins
@@ -64,6 +66,7 @@ pipeline
     
     //The options directive allows configuring Pipeline-specific options from within the Pipeline itself.
 	//we can also set these at the stage level
+	//Allowed Only once, inside the pipeline block
 	
 	options {
         buildDiscarder(logRotator(numToKeepStr:'5'))
@@ -111,6 +114,7 @@ pipeline
     
     //The parameters directive provides a list of parameters that a user should provide when triggering the Pipeline. 
     //The values for these user-specified parameters are made available to Pipeline steps via the params object
+	//Allowed Only once, inside the pipeline block
     
     /*
     parameters {
@@ -129,9 +133,12 @@ pipeline
     
 	stages {
 	
+		//The stage directive goes in the stages section and should contain a steps section, 
+		//an optional agent section, or other stage-specific directives. 
+	
 		stage('Build Application') {
 		
-			//setting local environment variables - acccessible only in this stage
+			//setting local environment variables - accessible only in this stage
 		
 			environment { 
                 DEBUG_FLAGS = '-g'
