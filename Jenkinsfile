@@ -66,7 +66,7 @@ pipeline
 	//we can also set these at the stage level
 	
 	options {
-        buildDiscarder(logRotator(numToKeepStr:'1'))
+        buildDiscarder(logRotator(numToKeepStr:'5'))
         disableConcurrentBuilds()
         timeout(time: 1, unit: 'HOURS')
         //sendSplunkConsoleLog()
@@ -170,13 +170,13 @@ pipeline
 			}
 		}
 		
-		/* stage('Deploy Application to CloudHub') {
+		stage('Deploy Application to CloudHub') {
 			steps{
 				script {
 					sh 'mvn package deploy -DmuleDeploy'
 				}
 			}
-		}	*/
+		}	
 		
 		
 		//stage level agent section
